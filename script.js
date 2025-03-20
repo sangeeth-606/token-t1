@@ -1,9 +1,19 @@
+const jwt = require('jsonwebtoken');
+const secretKey = '23jfjjifd9sdf';
+
 const encrypt = (payload) => {
-  // encrypt the payload and return token
+ 
+  return jwt.sign(payload, secretKey);
 }
 
 const decrypt = (token) => {
-  // return decoded payload
+ 
+  try {
+    return jwt.verify(token, secretKey);
+  } catch (err) {
+    console.error('Invalid token');
+    return null;
+  }
 }
 
 module.exports = {
